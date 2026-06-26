@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Il Menù — Acqua & Farina, Pizzeria a Castrignano del Capo</title>
+<meta name="description" content="Menù completo di Acqua & Farina: pizze classiche, gourmet rosse e gialle, gourmet bianche, fritti, pizza al metro, pucce e focacce.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,500;1,9..144,600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ============ TOKENS ============ */
+  :root{
+    --ink:#1C1410;
+    --cream:#F7EFE1;
+    --cream-2:#EFE3CC;
+    --terracotta:#C8542A;
+    --terracotta-dark:#9E3F1D;
+    --olive:#6B7A4F;
+    --grano:#E8B23D;
+    --white:#FFFCF6;
+
+    --display: 'Fraunces', serif;
+    --body: 'Space Grotesk', sans-serif;
+
+    --radius: 6px;
+    --maxw: 1180px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:16px;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  ul{margin:0;padding:0;}
+  h1,h2,h3,h4{font-family:var(--display);margin:0;font-weight:600;}
+  p{margin:0;}
+  button{font-family:var(--body);cursor:pointer;border:none;background:none;}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+
+  :focus-visible{outline:3px solid var(--terracotta);outline-offset:3px;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+
+  /* ============ TOPBAR ============ */
+  .topbar{
+    background:var(--ink);
+    color:var(--cream);
+    font-size:13px;
+    letter-spacing:.02em;
+  }
+  .topbar .wrap{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:8px 24px;
+    flex-wrap:wrap;
+    gap:6px;
+  }
+  .topbar a:hover{color:var(--grano);}
+  .topbar .sep{opacity:.4;margin:0 10px;}
+
+  /* ============ HEADER ============ */
+  header.site{
+    position:sticky;top:0;z-index:50;
+    background:var(--cream);
+    border-bottom:2px solid var(--ink);
+  }
+  nav.main{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 24px;
+    max-width:var(--maxw);margin:0 auto;
+  }
+  .logo{
+    font-family:var(--display);
+    font-weight:800;
+    font-size:1.5rem;
+    display:flex;align-items:center;gap:8px;
+    white-space:nowrap;
+  }
+  .logo .amp{color:var(--terracotta);font-style:italic;}
+  .nav-links{
+    display:flex;gap:28px;align-items:center;
+    font-weight:600;font-size:.95rem;
+  }
+  .nav-links a{position:relative;padding:4px 0;}
+  .nav-links a::after{
+    content:'';position:absolute;left:0;bottom:-2px;width:0;height:2px;
+    background:var(--terracotta);transition:width .25s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--terracotta);color:var(--white);
+    padding:11px 22px;border-radius:999px;
+    font-weight:700;font-size:.92rem;
+    box-shadow:3px 3px 0 var(--ink);
+    transition:transform .15s ease, box-shadow .15s ease;
+    white-space:nowrap;
+  }
+  .btn:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--ink);}
+  .btn:active{transform:translate(0,0);box-shadow:1px 1px 0 var(--ink);}
+  .btn.ghost{
+    background:transparent;color:var(--ink);
+    border:2px solid var(--ink);box-shadow:none;
+  }
+  .btn.ghost:hover{background:var(--ink);color:var(--cream);box-shadow:none;}
+  .burger{display:none;font-size:1.6rem;background:none;border:none;color:var(--ink);}
+
+  /* ============ HERO ============ */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    background:linear-gradient(180deg,var(--cream) 0%, var(--cream-2) 100%);
+    padding:64px 0 0;
+  }
+  .hero .wrap{
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-weight:700;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;
+    background:var(--ink);color:var(--grano);
+    padding:6px 14px;border-radius:999px;
+    margin-bottom:22px;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 6vw, 4.6rem);
+    line-height:0.96;
+    letter-spacing:-.01em;
+  }
+  .hero h1 em{
+    font-style:italic;color:var(--terracotta);
+    font-weight:500;
+  }
+  .hero-sub{
+    margin-top:22px;
+    font-size:1.15rem;
+    max-width:480px;
+    color:#3a2f27;
+  }
+  .hero-ctas{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap;}
+  .hero-stats{
+    display:flex;gap:28px;margin-top:46px;flex-wrap:wrap;
+  }
+  .stat b{display:block;font-family:var(--display);font-size:1.9rem;color:var(--terracotta-dark);}
+  .stat span{font-size:.82rem;color:#5a4d42;}
+
+  .hero-art{
+    position:relative;
+    aspect-ratio:1/1;
+  }
+  .pizza-disc{
+    position:absolute;inset:0;
+    border-radius:50%;
+    background:
+      radial-gradient(circle at 50% 50%, var(--terracotta) 0%, var(--terracotta) 58%, var(--grano) 60%, var(--grano) 100%);
+    box-shadow: 0 30px 60px -20px rgba(28,20,16,.45), inset 0 0 0 14px var(--white);
+    animation: spin-slow 38s linear infinite;
+  }
+  @keyframes spin-slow{ to{ transform:rotate(360deg); } }
+  .topping{
+    position:absolute;border-radius:50%;background:var(--olive);
+  }
+  .pizza-center{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    font-family:var(--display);font-weight:800;color:var(--white);
+    font-size:1.1rem;text-align:center;line-height:1.3;
+    text-shadow:0 2px 6px rgba(0,0,0,.25);
+  }
+  .badge-spin{
+    position:absolute;
+    top:-6%; right:-6%;
+    width:120px;height:120px;
+    background:var(--ink);color:var(--cream);
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    text-align:center;font-weight:700;font-size:.78rem;
+    border:3px dashed var(--grano);
+    transform:rotate(8deg);
+  }
+
+  .marquee-strip{
+    background:var(--ink);
+    color:var(--cream);
+    overflow:hidden;
+    white-space:nowrap;
+    padding:14px 0;
+    border-top:2px solid var(--ink);
+    border-bottom:2px solid var(--ink);
+    margin-top:56px;
+  }
+  .marquee-strip .track{
+    display:inline-block;
+    animation: marquee 28s linear infinite;
+    font-family:var(--display);
+    font-weight:600;font-style:italic;
+    font-size:1.25rem;
+  }
+  .marquee-strip .track span{padding:0 28px;}
+  .marquee-strip .track span:nth-child(even){color:var(--grano);font-style:normal;}
+  @keyframes marquee{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+
+  /* ============ SECTION GENERIC ============ */
+  section{padding:88px 0;}
+  .section-head{max-width:640px;margin-bottom:48px;}
+  .kicker{
+    font-weight:700;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--terracotta-dark);margin-bottom:10px;display:block;
+  }
+  .section-head h2{font-size:clamp(2rem,4vw,2.9rem);line-height:1.05;}
+  .section-head p{margin-top:16px;font-size:1.05rem;color:#3a2f27;}
+
+  /* ============ DUE ANIME ============ */
+  .due-anime{background:var(--white);}
+  .due-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:0;
+    border:2px solid var(--ink);border-radius:18px;overflow:hidden;
+  }
+  .anima{
+    padding:48px 40px;
+    position:relative;
+  }
+  .anima:first-child{
+    background:var(--terracotta);color:var(--white);
+    border-right:2px solid var(--ink);
+  }
+  .anima:last-child{background:var(--grano);color:var(--ink);}
+  .anima .num{
+    font-family:var(--display);font-style:italic;font-weight:600;
+    font-size:.95rem;opacity:.85;margin-bottom:8px;display:block;
+  }
+  .anima h3{font-size:2rem;margin-bottom:14px;}
+  .anima p{font-size:1rem;line-height:1.6;}
+  .anima .tag-row{display:flex;gap:8px;margin-top:22px;flex-wrap:wrap;}
+  .tag{
+    border:1.5px solid currentColor;border-radius:999px;
+    padding:5px 13px;font-size:.78rem;font-weight:600;
+  }
+
+  /* ============ MENU ============ */
+  .menu-section{background:var(--cream-2);}
+  .menu-tabs{
+    display:flex;gap:10px;margin-bottom:36px;flex-wrap:wrap;
+  }
+  .menu-tab{
+    padding:10px 20px;border-radius:999px;border:2px solid var(--ink);
+    font-weight:700;font-size:.9rem;background:transparent;
+  }
+  .menu-tab.active{background:var(--ink);color:var(--cream);}
+  .menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  .menu-panel{display:none;}
+  .menu-panel.active{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  .menu-item{
+    background:var(--white);
+    border:2px solid var(--ink);
+    border-radius:12px;
+    padding:20px 22px;
+    display:flex;justify-content:space-between;gap:16px;
+  }
+  .menu-item .info h4{font-size:1.08rem;margin-bottom:4px;}
+  .menu-item .info p{font-size:.88rem;color:#5a4d42;line-height:1.45;}
+  .menu-item .price{
+    font-family:var(--display);font-weight:700;font-size:1.15rem;
+    color:var(--terracotta-dark);white-space:nowrap;
+  }
+  .menu-note{
+    margin-top:28px;font-size:.9rem;color:#5a4d42;
+    border-left:3px solid var(--terracotta);padding-left:14px;
+  }
+
+  /* ============ STORIA ============ */
+  .storia{background:var(--ink);color:var(--cream);}
+  .storia .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center;}
+  .storia .kicker{color:var(--grano);}
+  .storia h2{color:var(--cream);}
+  .storia p{color:#d8cdbb;font-size:1.05rem;margin-top:18px;line-height:1.7;}
+  .storia-visual{
+    aspect-ratio:4/5;border-radius:18px;
+    background:
+      repeating-linear-gradient(135deg, var(--terracotta) 0 26px, var(--terracotta-dark) 26px 52px);
+    position:relative;overflow:hidden;
+    border:2px solid var(--grano);
+  }
+  .storia-visual::after{
+    content:'1° APRILE 2017';
+    position:absolute;bottom:24px;left:24px;
+    font-family:var(--display);font-weight:800;font-style:italic;
+    color:var(--cream);font-size:1.4rem;
+    background:rgba(28,20,16,.55);padding:8px 16px;border-radius:8px;
+  }
+
+  /* ============ RECENSIONI ============ */
+  .recensioni{background:var(--cream);}
+  .rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .rev-card{
+    background:var(--white);border:2px solid var(--ink);border-radius:14px;
+    padding:26px;display:flex;flex-direction:column;gap:14px;
+  }
+  .stars{color:var(--terracotta);font-size:1rem;letter-spacing:2px;}
+  .rev-card p{font-size:.95rem;line-height:1.55;color:#3a2f27;}
+  .rev-card .who{font-weight:700;font-size:.85rem;color:var(--ink);margin-top:auto;}
+
+  /* ============ DOVE SIAMO / CONTATTI ============ */
+  .dove{background:var(--olive);color:var(--white);}
+  .dove .kicker{color:var(--grano);}
+  .dove h2{color:var(--white);}
+  .dove-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;margin-top:40px;}
+  .info-card{
+    background:rgba(255,255,255,.08);
+    border:2px solid rgba(255,255,255,.25);
+    border-radius:14px;padding:30px;
+  }
+  .info-row{display:flex;gap:14px;margin-bottom:20px;align-items:flex-start;}
+  .info-row .ico{
+    width:38px;height:38px;border-radius:50%;background:var(--grano);color:var(--ink);
+    display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0;
+  }
+  .info-row h4{font-size:1rem;margin-bottom:4px;}
+  .info-row p, .info-row a{font-size:.92rem;color:#eef1e6;}
+  .map-frame{
+    border-radius:14px;overflow:hidden;border:2px solid rgba(255,255,255,.25);
+    min-height:320px;background:var(--cream);
+  }
+  .map-frame iframe{width:100%;height:100%;min-height:320px;border:0;display:block;}
+
+  /* ============ FOOTER ============ */
+  footer{background:var(--ink);color:#bdb1a0;padding:56px 0 28px;}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;margin-bottom:40px;}
+  .foot-logo{font-family:var(--display);color:var(--cream);font-size:1.4rem;font-weight:800;margin-bottom:14px;}
+  footer h5{color:var(--cream);font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;}
+  footer ul li{margin-bottom:10px;font-size:.92rem;}
+  footer a:hover{color:var(--grano);}
+  .foot-bottom{
+    border-top:1px solid #3a2f27;padding-top:24px;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+    font-size:.8rem;
+  }
+  .socials{display:flex;gap:14px;}
+
+  /* ============ STICKY CTA MOBILE ============ */
+  .sticky-cta{
+    display:none;
+    position:fixed;bottom:0;left:0;right:0;z-index:60;
+    background:var(--ink);padding:12px 16px;
+    display:none;
+    gap:10px;
+    box-shadow:0 -6px 18px rgba(0,0,0,.25);
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 920px){
+    .hero .wrap{grid-template-columns:1fr;}
+    .hero-art{max-width:340px;margin:0 auto;}
+    .due-grid{grid-template-columns:1fr;}
+    .anima:first-child{border-right:none;border-bottom:2px solid var(--ink);}
+    .storia .wrap{grid-template-columns:1fr;}
+    .storia-visual{order:-1;aspect-ratio:16/9;}
+    .dove-grid{grid-template-columns:1fr;}
+    .rev-grid{grid-template-columns:1fr;}
+    .menu-grid, .menu-panel.active{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr;gap:28px;}
+  }
+  @media (max-width: 760px){
+    .nav-links{display:none;}
+    .burger{display:block;}
+    .topbar .wrap{justify-content:center;text-align:center;}
+    .sticky-cta{display:flex;}
+    body{padding-bottom:70px;}
+  }
+  @media (max-width: 760px){
+    nav.main .btn.ghost{display:none;}
+  }
+
+  /* mobile nav drawer */
+  .mobile-drawer{
+    position:fixed;inset:0;background:var(--ink);z-index:100;
+    display:flex;flex-direction:column;justify-content:center;align-items:center;gap:28px;
+    transform:translateY(-100%);transition:transform .35s ease;
+  }
+  .mobile-drawer.open{transform:translateY(0);}
+  .mobile-drawer a{color:var(--cream);font-family:var(--display);font-size:1.8rem;font-weight:600;}
+  .mobile-drawer .close{position:absolute;top:24px;right:24px;color:var(--cream);font-size:2rem;background:none;border:none;}
+
+  /* ============ PAGINA MENU STANDALONE ============ */
+  .menu-page-hero{
+    background:var(--ink);
+    color:var(--cream);
+    padding:48px 0 32px;
+    text-align:center;
+  }
+  .menu-page-hero .kicker{color:var(--grano);}
+  .menu-page-hero h1{font-size:clamp(2rem,5vw,3rem);margin:10px 0 12px;}
+  .menu-page-hero p{color:#d9cdb8;max-width:560px;margin:0 auto;}
+  .back-link{
+    display:inline-flex;align-items:center;gap:6px;
+    color:var(--grano);font-weight:600;font-size:.92rem;
+    margin-bottom:18px;
+  }
+  .back-link:hover{text-decoration:underline;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <span>📍 Via San Giacomo 25, Castrignano del Capo (LE)</span>
+    <span><span class="sep">|</span><a href="tel:+393482968007">📞 348 296 8007</a><span class="sep">|</span>Aperti a cena, chiuso il giovedì</span>
+  </div>
+</div>
+
+<header class="site">
+  <nav class="main">
+    <a href="index.html#top" class="logo">Acqua <span class="amp">&</span> Farina</a>
+    <div class="nav-links">
+      <a href="index.html#anime">La Pizza</a>
+      <a href="menu.html">Menù</a>
+      <a href="index.html#storia">La Storia</a>
+      <a href="index.html#recensioni">Recensioni</a>
+      <a href="index.html#dove">Dove Siamo</a>
+    </div>
+    <div style="display:flex;gap:12px;align-items:center;">
+      <a href="tel:+393482968007" class="btn ghost">Chiama Ora</a>
+      <a href="index.html#dove" class="btn">Ordina / Asporto</a>
+      <button class="burger" aria-label="Apri menu" onclick="document.getElementById('drawer').classList.add('open')">☰</button>
+    </div>
+  </nav>
+</header>
+
+<div class="mobile-drawer" id="drawer">
+  <button class="close" aria-label="Chiudi menu" onclick="document.getElementById('drawer').classList.remove('open')">✕</button>
+  <a href="index.html#anime" onclick="document.getElementById('drawer').classList.remove('open')">La Pizza</a>
+  <a href="menu.html" onclick="document.getElementById('drawer').classList.remove('open')">Menù</a>
+  <a href="index.html#storia" onclick="document.getElementById('drawer').classList.remove('open')">La Storia</a>
+  <a href="index.html#recensioni" onclick="document.getElementById('drawer').classList.remove('open')">Recensioni</a>
+  <a href="index.html#dove" onclick="document.getElementById('drawer').classList.remove('open')">Dove Siamo</a>
+  <a href="tel:+393482968007" style="color:var(--grano);">📞 348 296 8007</a>
+</div>
+
+<main id="top">
+
+  <div class="menu-page-hero">
+    <div class="wrap">
+      <a href="index.html" class="back-link">← Torna al sito</a>
+      <span class="kicker">Tutto quello che facciamo</span>
+      <h1>Il Menù Completo</h1>
+      <p>Classiche, gourmet rosse e gialle, gourmet bianche, fritti, pizza al metro, pucce e focacce. Le voci con * indicano prodotto surgelato all'origine.</p>
+    </div>
+  </div>
+
+  <section class="menu-section">
+    <div class="wrap">
+      <div class="menu-tabs">
+        <button class="menu-tab active" data-tab="classiche">Le Classiche</button>
+        <button class="menu-tab" data-tab="gourmet-rosse">Gourmet Rosse & Gialle</button>
+        <button class="menu-tab" data-tab="gourmet-bianche">Gourmet Bianche</button>
+        <button class="menu-tab" data-tab="fritti">Fritti & Sfizi</button>
+        <button class="menu-tab" data-tab="metro">Pizza al Metro</button>
+        <button class="menu-tab" data-tab="pucce">Pucce & Focacce</button>
+      </div>
+
+      <div class="menu-panel active" data-panel="classiche">
+        <div class="menu-item">
+          <div class="info"><h4>Marinara</h4><p>Polpa di pomodoro, aglio, origano, olio extravergine d'oliva</p></div>
+          <div class="price">€5,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Baby</h4><p>Polpa di pomodoro, fior di latte, basilico, olive verdi, olio extravergine d'oliva</p></div>
+          <div class="price">€4,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Margherita</h4><p>Polpa di pomodoro, fior di latte, basilico, olive verdi, olio extravergine d'oliva</p></div>
+          <div class="price">€5,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Napoli</h4><p>Polpa di pomodoro, fior di latte, acciughe sott'olio, olive verdi, capperi</p></div>
+          <div class="price">€7,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Diavola</h4><p>Polpa di pomodoro, fior di latte, salame piccante</p></div>
+          <div class="price">€7,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Prosciutto e Funghi</h4><p>Polpa di pomodoro, fior di latte, prosciutto cotto, funghi champignon freschi</p></div>
+          <div class="price">€7,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>4 Formaggi</h4><p>Polpa di pomodoro, fior di latte, provola, fontina, gorgonzola, emmental</p></div>
+          <div class="price">€7,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>4 Stagioni</h4><p>Polpa di pomodoro, fior di latte, prosciutto cotto, funghi champignon freschi, carciofini, olive verdi</p></div>
+          <div class="price">€8,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Capricciosa</h4><p>Polpa di pomodoro, fior di latte, salame piccante, peperoni, carciofini, capperi, olive verdi denocciolate</p></div>
+          <div class="price">€8,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Ortolana</h4><p>Polpa di pomodoro, fior di latte, verdure grigliate (melanzane, zucchine, peperoni), olio extravergine d'oliva, basilico</p></div>
+          <div class="price">€9,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Dinamite</h4><p>Polpa di pomodoro, fior di latte, ricotta forte, salame piccante, nduja di Spilinga</p></div>
+          <div class="price">€9,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Calzone Rustico</h4><p>Polpa di pomodoro, fior di latte, ricotta fresca, prosciutto cotto, salame piccante, funghi champignon freschi</p></div>
+          <div class="price">€9,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Cappello di Pulcinella (Fritto)</h4><p>Polpa di pomodoro, fior di latte, ricotta fresca, pancetta affumicata, pepe nero</p></div>
+          <div class="price">€9,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Viennese</h4><p>Polpa di pomodoro, fior di latte, würstel, *patatine fritte</p></div>
+          <div class="price">€7,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Fumé</h4><p>Polpa di pomodoro, fior di latte, scamorza affumicata, pancetta affumicata</p></div>
+          <div class="price">€8,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Arrabbiata</h4><p>Polpa di pomodoro, aglio, crema di peperoni, fior di latte, nduja di Spilinga</p></div>
+          <div class="price">€8,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Tonno e Cipolla</h4><p>Polpa di pomodoro, fior di latte, tonno, cipolla rossa di Tropea</p></div>
+          <div class="price">€8,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Amatriciana</h4><p>Polpa di pomodoro, fior di latte, guanciale, cipolla rossa di Tropea, Pecorino Romano grattugiato, pepe nero</p></div>
+          <div class="price">€9,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Nutella</h4><p>Base pizza, Nutella</p></div>
+          <div class="price">€7,50</div>
+        </div>
+      </div>
+
+      <div class="menu-panel" data-panel="gourmet-rosse">
+        <div class="menu-item">
+          <div class="info"><h4>Martina Franca</h4><p>Polpa di pomodoro, fior di latte, stracciatella, capocollo di Martina Franca, olio extravergine d'oliva, basilico</p></div>
+          <div class="price">€12,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Parmigiana</h4><p>Polpa di pomodoro, fior di latte, melanzana a fette panata e fritta, prosciutto cotto, caciocavallo stagionato in grotta grattugiato, olio extravergine d'oliva, basilico</p></div>
+          <div class="price">€11,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Pescatora</h4><p>Polpa di pomodoro, fior di latte, *calamari rosolati, *gambero bianco, olio extravergine d'oliva</p></div>
+          <div class="price">€16,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Smoking</h4><p>Cornicione ripieno di ricotta fresca, polpa di pomodori datterino gialli, mozzarella di bufala d.o.p., pancetta croccante, burratina fresca, olio extravergine d'oliva</p></div>
+          <div class="price">€17,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Norma</h4><p>Polpa di pomodoro, mozzarella di bufala d.o.p., melanzana fritta a tocchetti, caciotta di capra grattugiata, basilico, olio extravergine d'oliva</p></div>
+          <div class="price">€12,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Acciughe & Stracciatella</h4><p>Polpa di pomodoro, fior di latte, acciughe in olio extravergine d'oliva, stracciatella, pomodorini semisecchi rossi, olio extravergine d'oliva</p></div>
+          <div class="price">€12,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>La Purpetta</h4><p>Polpa di pomodoro, fior di latte, *polpette di carne al sugo, Grana Padano d.o.p. a scaglie, basilico</p></div>
+          <div class="price">€11,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Mediterranea</h4><p>Fior di latte, filetto di sgombro in olio extravergine d'oliva, stracciatella, bottarga di muggine, olive nere taggiasche denocciolate, pomodorini semisecchi rossi, olio extravergine d'oliva</p></div>
+          <div class="price">€12,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Fantasia di Mare</h4><p>Polpa di pomodoro, pomodori datterino gialli, mozzarella di bufala d.o.p., *calamari rosolati, *seppioline grigliate, *gambero bianco, limone grattugiato</p></div>
+          <div class="price">€18,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Gustosa</h4><p>Polpa di pomodoro, mozzarella di bufala d.o.p. fuori cottura, olio extravergine d'oliva, basilico</p></div>
+          <div class="price">€10,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>La Vera</h4><p>Cornicione ripieno di ricotta fresca, polpa di pomodoro, fior di latte, mozzarella di bufala d.o.p., Pecorino Romano, basilico fresco</p></div>
+          <div class="price">€12,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Note d'Autunno</h4><p>Polpa di pomodori datterino gialli, mozzarella di bufala d.o.p., funghi cardoncelli, chiodini, porcini, shitake, strofaria, caciocavallo stagionato in grotta grattugiato</p></div>
+          <div class="price">€14,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Tramonto</h4><p>Fior di latte, polpa di pomodori datterini gialli, stracciatella, pomodorini semisecchi rossi, capocollo di Martina Franca, basilico, olio extravergine d'oliva</p></div>
+          <div class="price">€13,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Adriatico</h4><p>Fior di latte, polpa di pomodori datterini gialli, *filetto di tonno bianco in olio extravergine d'oliva, *gambero bianco, pangrattato, olio extravergine d'oliva</p></div>
+          <div class="price">€14,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Sardine & Bufala</h4><p>Polpa di pomodori datterino gialli, fior di latte, sardine in olio extravergine d'oliva, mozzarella di bufala d.o.p., lampascioni, basilico fresco</p></div>
+          <div class="price">€12,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Estate</h4><p>Fior di latte, polpa di pomodori datterino gialli, stracciatella, prosciutto crudo, pomodorini semisecchi rossi, pesto alla genovese, olio extravergine d'oliva</p></div>
+          <div class="price">€12,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>George</h4><p>Pomodorini freschi in cottura, fior di latte, *pulled pork, peperoni grigliati, cipolla rossa di Tropea, formaggio fuso in cottura</p></div>
+          <div class="price">€13,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Primo Amore</h4><p>Polpa di pomodori datterino gialli, mozzarella di bufala d.o.p., pomodorini rossi freschi, basilico fresco, olio extravergine d'oliva</p></div>
+          <div class="price">€12,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Crocchè</h4><p>Polpa di pomodoro, fior di latte, prosciutto cotto, *panzerotti di patate alla mentuccia</p></div>
+          <div class="price">€11,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Crudaiola</h4><p>Base pizza, mozzarella di bufala d.o.p., pomodorini datterino rossi, rucola, basilico</p></div>
+          <div class="price">€12,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Delizia di Mare</h4><p>Base pizza, polpa di pomodori datterini gialli, stracciatella, acciughe in olio extravergine d'oliva, pomodorini semisecchi rossi, olive nere denocciolate</p></div>
+          <div class="price">€12,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Domenica</h4><p>Polpa di pomodori datterini gialli, fior di latte, *polpette di carne fritte, burratina fresca, porchetta d'Ariccia, basilico fresco</p></div>
+          <div class="price">€13,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Sapori del Sud</h4><p>Fior di latte, polpa di pomodori datterini gialli, friarielli stufati, acciughe in olio extravergine d'oliva, crema di stracciatella, taralli al peperoncino sbriciolati</p></div>
+          <div class="price">€13,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Sgombro e Cipolle</h4><p>Polpa di pomodori datterini gialli, mozzarella di bufala d.o.p., filetto di sgombro in olio extravergine d'oliva, capperi, olive nere denocciolate, cipolla rossa di Tropea</p></div>
+          <div class="price">€12,50</div>
+        </div>
+      </div>
+
+      <div class="menu-panel" data-panel="gourmet-bianche">
+        <div class="menu-item">
+          <div class="info"><h4>Valtellina</h4><p>Fior di latte, bresaola della Valtellina d.o.p., rucola, pomodorini freschi, Grana Padano d.o.p. a scaglie</p></div>
+          <div class="price">€11,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Nordica</h4><p>Fior di latte, *salmone affumicato, stracciatella, pomodorini freschi, limone grattugiato, cipolla rossa di Tropea</p></div>
+          <div class="price">€13,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Chiosco</h4><p>Fior di latte, zucchine grigliate, brie, porchetta d'Ariccia</p></div>
+          <div class="price">€11,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Patè</h4><p>Fior di latte, Philadelphia, pomodorini semisecchi rossi, patè di olive nere, olio extravergine d'oliva</p></div>
+          <div class="price">€10,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Campestre</h4><p>Fior di latte, carciofi, dadolata di caciotta di capra, pomodori semisecchi rossi, olive verdi denocciolate</p></div>
+          <div class="price">€11,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>California</h4><p>Fior di latte, bacon croccante, gambero bianco, *anelli di cipolla fritta, rucola</p></div>
+          <div class="price">€13,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Rossa di Tropea & Zola</h4><p>Fior di latte, gorgonzola, cipolla rossa di Tropea, olive verdi denocciolate</p></div>
+          <div class="price">€9,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Grecia</h4><p>Fior di latte, *filetto di tonno bianco in olio extravergine di oliva, feta greca, rucola, pomodorini freschi, olive verdi denocciolate, olio extravergine d'oliva</p></div>
+          <div class="price">€13,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Parigina</h4><p>Fior di latte, speck, brie, rucola, pomodorini freschi</p></div>
+          <div class="price">€11,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Young Gold</h4><p>Fior di latte, *straccetti di pollo panati e fritti, *anelli di cipolla fritta, rucola</p></div>
+          <div class="price">€13,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Fresca</h4><p>Base pizza, fior di latte a crudo, rucola, pomodorini freschi, Grana Padano d.o.p. a scaglie, olio extravergine d'oliva</p></div>
+          <div class="price">€9,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Mimosa</h4><p>Cornicione di ricotta fresca, fior di latte, prosciutto cotto, mais, pomodori semisecchi rossi, olio extravergine d'oliva</p></div>
+          <div class="price">€10,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Burrata & Mortadella</h4><p>Cornicione di ricotta, fior di latte, mortadella, burratina fresca, granella di pistacchio, olio extravergine d'oliva</p></div>
+          <div class="price">€13,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Principessa</h4><p>Fior di latte, gorgonzola, prosciutto crudo, noci, olio extravergine d'oliva</p></div>
+          <div class="price">€12,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Sardine & Scanta</h4><p>Fior di latte, sardine in olio extravergine d'oliva, zucchine, cipolla rossa di Tropea, ricotta forte, olio extravergine d'oliva</p></div>
+          <div class="price">€11,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Bosco</h4><p>Fior di latte, pancetta affumicata, funghi porcini, stracciatella, pepe nero</p></div>
+          <div class="price">€11,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Inverno</h4><p>Fior di latte, crema di carciofi, speck, caciocavallo stagionato in grotta grattugiato</p></div>
+          <div class="price">€11,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Carbonara</h4><p>Fior di latte, cipolla rossa di Tropea, guanciale, uovo sbattuto, pepe nero</p></div>
+          <div class="price">€10,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Pugliese</h4><p>Fior di latte, cime di rapa stufate, salsiccia fresca punta di coltello, olio extravergine d'oliva</p></div>
+          <div class="price">€11,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Crudo & Buratina</h4><p>Fior di latte, prosciutto crudo, burratina fresca, basilico, olio extravergine d'oliva</p></div>
+          <div class="price">€13,50</div>
+        </div>
+      </div>
+
+      <div class="menu-panel" data-panel="fritti">
+        <div class="menu-item">
+          <div class="info"><h4>Frittura di Calamari e Gamberetti</h4><p>*Calamari, *gamberetti fritti</p></div>
+          <div class="price">€12,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Frittura di Calamari</h4><p>*Calamari fritti</p></div>
+          <div class="price">€11,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Croccanti Stracetti di Pollo</h4><p>Petto di pollo panati e fritti</p></div>
+          <div class="price">€6,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Fish and Chips</h4><p>Filetto di merluzzo panato e fritto, con *patatine fritte</p></div>
+          <div class="price">€6,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Fritto Misto di Verdure</h4><p>*Panzarotti di patate alla mentuccia, *mozzarelline fritte, *polpette di melanzane, pittole miste (classiche, pizzaiola)</p></div>
+          <div class="price">€10,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Porzione 8 pz Misto</h4><p>*Arancini di riso, *polpette di melanzane, *polpette di carne</p></div>
+          <div class="price">€5,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Porzione 12 pz Misto</h4><p>*Panzarotti di patate alla mentuccia, *olive all'Ascolana, *mozzarelline fritte, *anelli di cipolla panati e fritti</p></div>
+          <div class="price">€6,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Patatine Cacio e Pepe</h4><p>Porzione piccola / media</p></div>
+          <div class="price">€4,50 / €5,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>*Patatine Fritte</h4><p>Porzione piccola / media / grande</p></div>
+          <div class="price">€4,50 / €5,50 / €9,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Pittole Miste</h4><p>Classiche, pizzaiola — porzione piccola / media</p></div>
+          <div class="price">€5,50 / €9,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Pittole alla Nutella</h4><p>Porzione piccola / media</p></div>
+          <div class="price">€5,50 / €9,00</div>
+        </div>
+      </div>
+
+      <div class="menu-panel" data-panel="metro">
+        <div class="menu-item">
+          <div class="info"><h4>Pizza 1/2 Metro — 2 Gusti Classica</h4><p>Due gusti a scelta dalle Classiche</p></div>
+          <div class="price">€15,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Pizza 1/2 Metro — 2 Gusti Gourmet Rosse & Gialle</h4><p>Due gusti a scelta dalle Gourmet Rosse & Gialle</p></div>
+          <div class="price">€23,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Pizza 1/2 Metro — 2 Gusti Gourmet Bianche</h4><p>Due gusti a scelta dalle Gourmet Bianche</p></div>
+          <div class="price">€19,50</div>
+        </div>
+      </div>
+
+      <div class="menu-panel" data-panel="pucce">
+        <div class="menu-item">
+          <div class="info"><h4>Contadina</h4><p>Fior di latte, crema di peperoni, caciotta di capra, pomodorini freschi, *anelli di cipolla panati e fritti</p></div>
+          <div class="price">€8,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Norvegese</h4><p>Fior di latte, pomodorini freschi, stracciatella, *salmone affumicato, lattuga</p></div>
+          <div class="price">€9,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Cuore</h4><p>Fior di latte, speck, caciocavallo, crema di carciofi, pomodorini freschi, olio extravergine d'oliva</p></div>
+          <div class="price">€8,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Capriccio</h4><p>Fior di latte, pomodorini freschi, Mortadella, stracciatella, granella di Pistacchio, olio extravergine d'oliva</p></div>
+          <div class="price">€8,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Valle d'Itria</h4><p>Fior di latte, pomodorini freschi, capocollo di Martina Franca, stracciatella, olio extravergine d'oliva</p></div>
+          <div class="price">€9,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Santorini</h4><p>Fior di latte, pomodorini freschi, filetto di tonno bianco sott'olio, feta greca, rucola</p></div>
+          <div class="price">€9,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Hamburger</h4><p>Pomodorini freschi, cipolla rossa di Tropea, Provolone, hamburger di manzo "Scottona", lattuga, *patatine fritte</p></div>
+          <div class="price">€8,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Estiva</h4><p>Fior di latte, salame piccante, melanzane alla parmigiana, *patatine fritte, maionese</p></div>
+          <div class="price">€7,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Pollo Fritto</h4><p>Fior di latte, *cotoletta di pollo panata e fritta, lattuga, *patatine fritte, maionese</p></div>
+          <div class="price">€7,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Calabrese</h4><p>Fior di latte, pomodorini freschi, salame piccante, rucola, cipolla, olio extravergine d'oliva</p></div>
+          <div class="price">€9,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Surf and Turf</h4><p>Fior di latte, *gambero bianco, bacon croccante, *anelli di cipolla panati e fritti</p></div>
+          <div class="price">€8,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Bologna</h4><p>Fior di latte, Provolone, Mortadella, lattuga, peperoni grigliati, olio extravergine d'oliva</p></div>
+          <div class="price">€8,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Caprese</h4><p>Pomodorini freschi, mozzarella di bufala d.o.p., basilico, origano, Grana Padano d.o.p. a scaglie, olio extravergine d'oliva</p></div>
+          <div class="price">€8,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Rinfrescante</h4><p>Fior di latte, bresaola della Valtellina d.o.p., limone grattugiato, olio extravergine d'oliva</p></div>
+          <div class="price">€10,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Pulled Pork</h4><p>Fior di latte, *pulled pork (spalla di suino aromatizzata e sfilacciata), peperoni grigliati, *patatine fritte, formaggio fuso in cottura</p></div>
+          <div class="price">€8,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Kebab</h4><p>*Kebab di tacchino e pollo, pomodorini freschi, cipolla rossa di Tropea, lattuga, maionese</p></div>
+          <div class="price">€7,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Regina</h4><p>Fior di latte, pomodorini freschi, prosciutto crudo di Parma, Grana Padano d.o.p. a scaglie, rucola, maionese</p></div>
+          <div class="price">€7,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Lunedì</h4><p>Fior di latte, *polpette di carne, polpa di pomodoro, Caciocavallo, *patatine fritte</p></div>
+          <div class="price">€7,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Trentina</h4><p>Fior di latte, pomodorini freschi, speck, Brie, zucchine grigliate, rucola, origano</p></div>
+          <div class="price">€8,00</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Vegetariana</h4><p>Fior di latte, pomodorini freschi, verdure grigliate, rucola, olio extravergine d'oliva, origano</p></div>
+          <div class="price">€8,50</div>
+        </div>
+        <div class="menu-item">
+          <div class="info"><h4>Ariccia</h4><p>Fior di latte, porchetta d'Ariccia, *patatine fritte, lattuga, maionese</p></div>
+          <div class="price">€8,00</div>
+        </div>
+      </div>
+
+      <p class="menu-note">Allergeni: glutine, latte, pesce, crostacei, molluschi, frutta a guscio, uova. * Prodotto surgelato all'origine. Menù aggiornato dal cartello esposto in pizzeria — per qualsiasi dubbio su allergie o intolleranze chiedi pure al nostro staff in sala.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo">Acqua & Farina</div>
+        <p style="font-size:.92rem;max-width:320px;color:#bdb1a0;">Pizzeria a Castrignano del Capo, nel cuore del Salento. Classiche, gourmet, fritti e pucce. Dal 2017, due fratelli, un forno, zero scorciatoie.</p>
+        <div class="socials" style="margin-top:18px;">
+          <a href="https://www.instagram.com/acqua_farina_pizzeria/" target="_blank" rel="noopener" aria-label="Instagram">Instagram</a>
+          <a href="https://www.facebook.com/acquaefarinapizza/" target="_blank" rel="noopener" aria-label="Facebook">Facebook</a>
+        </div>
+      </div>
+      <div>
+        <h5>Naviga</h5>
+        <ul>
+          <li><a href="index.html#anime">La Pizza</a></li>
+          <li><a href="menu.html">Menù</a></li>
+          <li><a href="index.html#storia">La Storia</a></li>
+          <li><a href="index.html#recensioni">Recensioni</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contatti</h5>
+        <ul>
+          <li>Via San Giacomo 25</li>
+          <li>73040 Castrignano del Capo (LE)</li>
+          <li><a href="tel:+393482968007">348 296 8007</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Acqua & Farina — Castrignano del Capo. Tutti i diritti riservati.</span>
+      <span>Sito non ufficiale, creato a scopo dimostrativo.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="sticky-cta">
+  <a href="tel:+393482968007" class="btn ghost" style="flex:1;justify-content:center;border-color:var(--cream);color:var(--cream);">Chiama</a>
+  <a href="index.html#dove" class="btn" style="flex:1;justify-content:center;">Dove Siamo</a>
+</div>
+
+<script>
+  // Tabs menu
+  document.querySelectorAll('.menu-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.querySelector('.menu-panel[data-panel="' + tab.dataset.tab + '"]').classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
